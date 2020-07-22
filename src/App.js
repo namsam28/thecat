@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import "./App.css";
+import Api from "./components/Api";
+import DarkModeToggle from "./components/DarkModeToggle";
+import SearchInput from "./components/SearchInput";
+import SearchResult from "./components/SearchResult";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    keyword: "aaa",
+    data: [],
+  };
+
+  onSearch(keyword) {
+    Api.fetchCats(keyword).then(({ isError, data }) => {
+      //isError가 없을 시(false);
+      !isError && this.setState({ data: data });
+    });
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: false });
+    /*
+    setTimeout(() => {
+      this.onSearch("l");
+    }, 2000);
+    */
+  }
+
+  render() {
+    //console.log(this.state.data)
+    const { data, keyword, isLoading } = this.state;
+    //console.log(data);
+    return isLoading ? (
+      <div>Loading...</div>
+    ) : (
+      <Fragment>
+        <DarkModeToggle />
+        <SearchInput onSearch={this.onSearch.bind(this)} />
+        <SearchResult data={data} />
+      </Fragment>
+    );
+  }
 }
 
 export default App;

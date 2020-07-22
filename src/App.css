@@ -1,38 +1,259 @@
-.App {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  font-size: 10px;
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* root */
+:root {
+  --bgBlack: #333;
+  --bgWhite: #fff;
+  --colorBlack: #333;
+  --colorWhite: #fff;
+}
+
+/* nodata */
+.nodata {
+  width: 100%;
+  text-align: center;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  padding: 8rem 0;
+}
+
+/* App */
+[data-color-mode^="light"] body {
+  background-color: var(--bgWhite);
+  color: var(--colorBlack);
+}
+[data-color-mode^="dark"] body {
+  background-color: var(--bgBlack);
+  color: var(--colorWhite);
+}
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.search-area {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+}
+.search-area input {
+  width: 74%;
+  font-size: 1.6rem;
+  padding: 0.4rem 0.6rem;
+  line-height: 1.5;
+}
+.search-area button {
+  margin-left: 1%;
+  width: 25%;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.search-result {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-result li {
+  min-height: 4rem;
+  width: calc(50% - 10px);
+  margin-top: 20px;
+  background-color: #aaa;
+}
+.search-result li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.search-result li span {
+  display: block;
+  font-size: 1.5rem;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.search-result li:nth-child(2n) {
+  margin-left: 20px;
+}
+.search-result li:nth-child(1),
+.search-result li:nth-child(2) {
+  margin-top: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* darkmode-toggle */
+.darkmode-toggle {
+}
+
+.darkmode-toggle label {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 22px;
+  border-radius: 20px;
+  background-color: #ddd;
+}
+.darkmode-toggle label:after {
+  content: "DarkMode";
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 5px;
+  height: 100%;
+  line-height: 22px;
+}
+.darkmode-toggle label input {
+  width: 0px;
+  height: 0px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+.darkmode-toggle label input:before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #000;
+  transition: transform 0.3s;
+}
+
+.darkmode-toggle label input:checked:before {
+  transform: translateX(18px);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-color-mode^="light"] body {
+    background-color: var(--bgWhite);
+    color: var(--colorBlack);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  body {
+    background-color: var(--bgBlack);
+    color: var(--colorWhite);
   }
 }
